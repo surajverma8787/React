@@ -1,10 +1,12 @@
 import React from "react";
 import Heading from "./Heading.jsx";
-import List from "./List.jsx";
+import Footer from "./Footer.jsx";
+import Note from "./Note.jsx";
 function App() {
     return <div>
         <Heading />
-        <List />
+        <Note />
+        <Footer />
     </div>
 }
 export default App;
