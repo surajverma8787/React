@@ -4,9 +4,11 @@ import Footer from "./Footer.jsx";
 import Note from "./Note.jsx";
 import Images from "./Images.jsx";
 import contacts from "../contacts.js";
+import Avatar from "./Avatar";
 function App() {
     return <div>
         <h1 className="heading">My Contacts</h1>
+        <Avatar img="https://userpic.codeforces.org/1419937/title/d511c9794da58894.jpg" />
         <Images
             name={contacts[0].name}
             image={contacts[0].image}
