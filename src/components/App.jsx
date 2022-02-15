@@ -1,20 +1,17 @@
 import React from "react";
-import Login from "./Login.jsx";
-var isLoggedin = true;
-const obj = new Date();
-const currDay = obj.getDay();
 function App() {
-    return (
-        <div className="container">
-            {
-                isLoggedin === true ? <h1>Hello User</h1> : <Login />
-            }
-            {
-                currDay === 7 && <h1>Lets Enjoy</h1>
-            }
-
-        </div>
-    );
+    const [count, setCount] = React.useState(0);
+    function increase() {
+        setCount(count + 1);
+    }
+    function decrease() {
+        setCount(count - 1);
+    }
+    return <div className="container">
+        <h1>{count}</h1>
+        <button onClick={increase}>+</button>
+        <button onClick={decrease}>-</button>
+    </div>;
 }
 
 export default App;
