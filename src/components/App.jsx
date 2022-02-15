@@ -1,17 +1,18 @@
 import React from "react";
 function App() {
-    const [count, setCount] = React.useState(0);
-    function increase() {
-        setCount(count + 1);
+    setInterval(checkTime, 1000);
+    var t = new Date().toLocaleTimeString();
+    const [time, setTime] = React.useState(t);
+    function checkTime() {
+        t = new Date().toLocaleTimeString();
+        setTime(t);
     }
-    function decrease() {
-        setCount(count - 1);
-    }
-    return <div className="container">
-        <h1>{count}</h1>
-        <button onClick={increase}>+</button>
-        <button onClick={decrease}>-</button>
-    </div>;
+    return (
+        <div className="container">
+            <h1>{time}</h1>
+            <button onClick={checkTime}>Get Time</button>
+        </div>
+    );
 }
 
 export default App;
