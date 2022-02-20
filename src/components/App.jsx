@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 
 function App() {
-    var [fullName, setFullName] = React.useState({
+    const [contact, setContact] = useState({
         fName: "",
-        lName: ""
+        lName: "",
+        email: ""
     });
-    function updateName(event) {
-        const name = event.target.name;
+    function updateContact(event) {
+        const changeName = event.target.name;
         const newValue = event.target.value;
-        setFullName(prevValue => {
-            if (name == "fName") {
+        setContact(prevValue => {
+            if (changeName === 'fName') {
                 return {
                     fName: newValue,
-                    lName: prevValue.lName
-                }
+                    lName: prevValue.lName,
+                    email: prevValue.email
+                };
+
+            }
+            else if (changeName === 'lName') {
+                return {
+                    fName: prevValue.fName,
+                    lName: newValue,
+                    email: prevValue.email
+                };
             }
             else {
                 return {
-                    fName: prevValue.fName,
-                    lName: newValue
-                }
+                    fName: prevValue.lName,
+                    lName: prevValue.lName,
+                    email: newValue
+
+                };
 
             }
-        })
+
+        });
+
     }
+
     return (
         <div className="container">
-            <h1>Hello {fullName.fName} {fullName.lName}</h1>
+            <h1>
+                Hello {contact.fName} {contact.lName}
+            </h1>
+            <p>{contact.email}</p>
             <form>
-                <input name="fName" onChange={updateName} placeholder="First Name" />
-                <input name="lName" onChange={updateName} placeholder="Last Name" />
+                <input name="fName" onChange={updateContact} placeholder="First Name" />
+                <input name="lName" onChange={updateContact} placeholder="Last Name" />
+                <input name="email" onChange={updateContact} placeholder="Email" />
                 <button>Submit</button>
             </form>
         </div>
