@@ -1,23 +1,38 @@
 import React from "react";
+
 function App() {
-    var [name, setName] = React.useState("");
-    var [headingText, setHeadingText] = React.useState("");
-    function handleChange(event) {
-        name = event.target.value;
-        setName(name);
-    }
-    function checkClick(event) {
-        setHeadingText(name);
-        event.preventDefault();//To prevent Page from Refresh
+    var [fullName, setFullName] = React.useState({
+        fName: "",
+        lName: ""
+    });
+    function updateName(event) {
+        const name = event.target.name;
+        const newValue = event.target.value;
+        setFullName(prevValue => {
+            if (name == "fName") {
+                return {
+                    fName: newValue,
+                    lName: prevValue.lName
+                }
+            }
+            else {
+                return {
+                    fName: prevValue.fName,
+                    lName: newValue
+                }
+
+            }
+        })
     }
     return (
         <div className="container">
-            <h1>Hello {headingText}</h1>
-            <form onSubmit={checkClick}>
-                <input onChange={handleChange} type="text" placeholder="What's your name?" value={name} />
-                <button onClick={checkClick}>Submit</button>
+            <h1>Hello {fullName.fName} {fullName.lName}</h1>
+            <form>
+                <input name="fName" onChange={updateName} placeholder="First Name" />
+                <input name="lName" onChange={updateName} placeholder="Last Name" />
+                <button>Submit</button>
             </form>
-        </div >
+        </div>
     );
 }
 
