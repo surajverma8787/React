@@ -1,53 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 
 function App() {
-    const [contact, setContact] = useState({
-        fName: "",
-        lName: "",
-        email: ""
-    });
-    function updateContact(event) {
-        const changeName = event.target.name;
-        const newValue = event.target.value;
-        setContact(prevValue => {
-            if (changeName === 'fName') {
-                return {
-                    ...prevValue,
-                    fName: newValue,
-                };
-
-            }
-            else if (changeName === 'lName') {
-                return {
-                    ...prevValue,
-                    lName: newValue,
-                };
-            }
-            else {
-                return {
-                    ...prevValue,
-                    email: newValue
-
-                };
-
-            }
-
+    const [inputText, setInputText] = React.useState("");
+    const [items, setItems] = React.useState([]);
+    function updateText(event) {
+        const newText = event.target.value;
+        setInputText(newText);
+    }
+    function addItems() {
+        setItems(prevItems => {
+            return [...prevItems, inputText];
         });
-
+        setInputText("");
     }
 
     return (
         <div className="container">
-            <h1>
-                Hello {contact.fName} {contact.lName}
-            </h1>
-            <p>{contact.email}</p>
-            <form>
-                <input name="fName" onChange={updateContact} placeholder="First Name" />
-                <input name="lName" onChange={updateContact} placeholder="Last Name" />
-                <input name="email" onChange={updateContact} placeholder="Email" />
-                <button>Submit</button>
-            </form>
+            <div className="heading">
+                <h1>To-Do List</h1>
+            </div>
+            <div className="form">
+                <input type="text" onChange={updateText} value={inputText} />
+                <button onClick={addItems}>
+                    <span>Add</span>
+                </button>
+            </div>
+            <div>
+                <ul>
+                    {items.map(item => <li>{item}</li>)}
+                </ul>
+            </div>
         </div>
     );
 }
