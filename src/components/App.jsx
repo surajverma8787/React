@@ -12,23 +12,20 @@ function App() {
         setContact(prevValue => {
             if (changeName === 'fName') {
                 return {
+                    ...prevValue,
                     fName: newValue,
-                    lName: prevValue.lName,
-                    email: prevValue.email
                 };
 
             }
             else if (changeName === 'lName') {
                 return {
-                    fName: prevValue.fName,
+                    ...prevValue,
                     lName: newValue,
-                    email: prevValue.email
                 };
             }
             else {
                 return {
-                    fName: prevValue.lName,
-                    lName: prevValue.lName,
+                    ...prevValue,
                     email: newValue
 
                 };
